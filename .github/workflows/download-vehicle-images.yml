@@ -28,7 +28,7 @@ jobs:
             'tucson':'tucson',
             'ioniq5':'ioniq5',
             'kona':'kona',
-            'avante':'avante'
+            'avante':'the-all-new-avante'
           }
           async def main():
             async with async_playwright() as p:
