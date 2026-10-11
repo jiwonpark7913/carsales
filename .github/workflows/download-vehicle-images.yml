@@ -22,12 +22,12 @@ jobs:
           from playwright.async_api import async_playwright
           from PIL import Image
           models={
-            'palisade':'the-all-new-palisade',
+            'palisade':'palisade',
             'grandeur':'the-new-grandeur',
-            'santafe':'the-all-new-santafe',
-            'tucson':'the-new-tucson',
-            'ioniq5':'the-new-ioniq5',
-            'kona':'the-all-new-kona'
+            'santafe':'santafe',
+            'tucson':'tucson',
+            'ioniq5':'ioniq5',
+            'kona':'kona'
           }
           async def main():
             async with async_playwright() as p:
@@ -37,7 +37,8 @@ jobs:
                 page=await browser.new_page(viewport={'width':1280,'height':820},device_scale_factor=1,locale='ko-KR')
                 url=f'https://www.hyundai.com/kr/ko/e/vehicles/{slug}/intro'
                 try:
-                  await page.goto(url,wait_until='domcontentloaded',timeout=60000)
+                  response=await page.goto(url,wait_until='domcontentloaded',timeout=60000)
+                  if response and response.status>=400:raise Exception('HTTP '+str(response.status))
                   await page.wait_for_timeout(7000)
                   for label in ['동의','모두 동의','확인','닫기']:
                     try:
@@ -46,6 +47,7 @@ jobs:
                     except Exception:pass
                   await page.wait_for_timeout(1500)
                   if 'hyundai.com' not in page.url:raise Exception('Unexpected redirect '+page.url)
+                  if '404' in (await page.title()).lower():raise Exception('404 title')
                   image=await page.screenshot(type='jpeg',quality=83,animations='disabled')
                   im=Image.open(io.BytesIO(image))
                   if im.width<900 or im.height<600:raise Exception('Screenshot too small')
