@@ -1,0 +1,41 @@
+import asyncio, pathlib, io
+from playwright.async_api import async_playwright
+from PIL import Image
+models={
+  'palisade':'palisade',
+  'grandeur':'the-new-grandeur',
+  'santafe':'santafe',
+  'tucson':'tucson',
+  'ioniq5':'ioniq5',
+  'kona':'kona',
+  'avante':'the-all-new-avante'
+}
+async def main():
+  async with async_playwright() as p:
+    browser=await p.chromium.launch(headless=True,args=['--no-sandbox'])
+    folder=pathlib.Path('images');folder.mkdir(exist_ok=True)
+    for name,slug in models.items():
+      page=await browser.new_page(viewport={'width':1280,'height':820},device_scale_factor=1,locale='ko-KR')
+      url=f'https://www.hyundai.com/kr/ko/e/vehicles/{slug}/intro'
+      try:
+        response=await page.goto(url,wait_until='domcontentloaded',timeout=60000)
+        if response and response.status>=400:raise Exception('HTTP '+str(response.status))
+        await page.wait_for_timeout(7000)
+        for label in ['동의','모두 동의','확인','닫기']:
+          try:
+            button=page.get_by_role('button',name=label,exact=True)
+            if await button.count() and await button.first.is_visible():await button.first.click(timeout=1200)
+          except Exception:pass
+        await page.wait_for_timeout(1500)
+        if 'hyundai.com' not in page.url:raise Exception('Unexpected redirect '+page.url)
+        if '404' in (await page.title()).lower():raise Exception('404 title')
+        image=await page.screenshot(type='jpeg',quality=83,animations='disabled')
+        im=Image.open(io.BytesIO(image))
+        if im.width<900 or im.height<600:raise Exception('Screenshot too small')
+        (folder/(name+'.jpg')).write_bytes(image)
+        print('CAPTURED',name,page.url,len(image),flush=True)
+      except Exception as exc:
+        print('FAILED',name,str(exc),flush=True)
+      finally:await page.close()
+    await browser.close()
+asyncio.run(main())
