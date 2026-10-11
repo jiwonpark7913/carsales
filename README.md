@@ -1,4 +1,4 @@
-# Carsales — 내 차 이야기
+# Carsales 
 
 현대자동차 모델을 살펴보고 차량 구매·교체 관련 상담을 신청할 수 있는 **반응형 웹사이트**입니다. 사용자가 차량 정보를 탐색한 뒤 상담 요청을 남기면, 해당 정보가 **Supabase PostgreSQL**에 저장되도록 구성했습니다.
 
@@ -6,11 +6,11 @@
 
 ## 웹사이트 미리보기
 
-- **[웹사이트 UI 미리보기 (GitHub Pages)](https://jiwonpark7913.github.io/carsales/)** — 실제 배포 주소입니다. GitHub 저장소의 **Settings → Pages**에서 `main` / `/(root)` 배포를 활성화해야 접속할 수 있습니다. 현재 404가 발생한다면 배포 설정 또는 배포 완료 여부를 확인해 주세요.
-- **[웹사이트 소스 코드](https://github.com/jiwonpark7913/carsales/blob/main/index.html)** — 화면의 HTML 구조를 확인할 수 있습니다.
+- **[웹사이트 UI 미리보기 (GitHub Pages)](https://jiwonpark7913.github.io/carsales/)**
 
 ## 프로젝트 목적
 
+- 카마스터의 고객 관리 창구
 - 차량 사진과 모델 정보를 한곳에서 제공하여 차량 탐색을 돕습니다.
 - 연령대별 차량 추천과 상담 주제 선택으로 상담 진입을 쉽게 만듭니다.
 - 상담 신청 정보를 구조화하여 데이터베이스에 저장하고 후속 상담에 활용할 수 있도록 합니다.
