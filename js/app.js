@@ -31,3 +31,9 @@ consultationForm.onsubmit=async e=>{
  }finally{submitButton.disabled=false;submitButton.textContent='상담 신청하기 →'}
 };
 document.getElementById('close').onclick=()=>document.getElementById('modal').classList.remove('on');document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById('result').textContent);alert('복사했습니다.')}catch(e){alert('직접 복사해 주세요.')}};
+// Apply the same electric/non-electric filter to all vehicle cards.
+document.querySelectorAll('[data-power-filter]').forEach(button=>button.addEventListener('click',()=>{
+  const selected=button.dataset.powerFilter;
+  document.querySelectorAll('[data-power-filter]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+  document.querySelectorAll('.car-card[data-powertrain]').forEach(card=>{card.hidden=selected!=='all'&&card.dataset.powertrain!==selected;});
+}));
