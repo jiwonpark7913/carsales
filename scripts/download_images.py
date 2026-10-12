@@ -33,6 +33,7 @@ async def main():
   folder.mkdir(exist_ok=True)
   async with async_playwright() as playwright:
     browser = await playwright.chromium.launch(headless=True, args=["--no-sandbox"])
+    failures = []
     for name, url in MODELS.items():
       page = await browser.new_page(viewport={"width": 1280, "height": 820}, device_scale_factor=1, locale="ko-KR")
       try:
@@ -58,10 +59,13 @@ async def main():
         (folder / f"{name}.jpg").write_bytes(data)
         print(f"CAPTURED {name}: {page.url} ({len(data)} bytes)", flush=True)
       except Exception as exc:
+        failures.append(name)
         print(f"FAILED {name}: {exc}", flush=True)
       finally:
         await page.close()
     await browser.close()
+    if failures:
+      raise RuntimeError('Vehicle image capture failed for: ' + ', '.join(failures))
 
 if __name__ == "__main__":
   asyncio.run(main())
