@@ -10,14 +10,14 @@
 .photo::before{content:"";position:absolute;left:15%;right:15%;top:31%;height:37%;border-radius:55% 55% 17% 17%;background:linear-gradient(135deg,#e6ebef,#859aab);box-shadow:0 13px 0 -5px #314c61,0 19px 14px #172f4025;transform:skew(-10deg);opacity:.38}
 
 
-.photo::before{display:none!important}.photo img{position:relative;z-index:2;object-fit:cover;width:100%;height:100%}.hero{background-image:linear-gradient(90deg,#061d35eb,#061d3540),url("images/palisade.jpg");background-position:center;background-size:cover}
+.photo::before{display:none!important}.photo img{position:relative;z-index:2;object-fit:cover;width:100%;height:100%}.hero{background-image:linear-gradient(90deg,#061d35eb,#061d3540),url("../images/palisade.jpg");background-position:center;background-size:cover}
 
 
 /* Premium responsive dashboard refresh */
 :root{--navy:#102b50;--blue:#2777cb;--ink:#142d4e;--muted:#74849b;--line:#e7edf5;--soft:#f5f8fc}
 body{background:#f4f7fb}.wrap{width:min(1450px,100% - 40px)}
 .top{height:74px}.brand{font-size:21px}.brand small{font-size:11px}
-.hero{border-radius:22px 22px 0 0;background-image:linear-gradient(90deg,#071d32df,#092a4d32),url("images/palisade.jpg");background-position:center 49%}
+.hero{border-radius:22px 22px 0 0;background-image:linear-gradient(90deg,#071d32df,#092a4d32),url("../images/palisade.jpg");background-position:center 49%}
 .hero-inner{padding:85px 0 120px}.hero h1{font-size:clamp(37px,4vw,62px);line-height:1.22}.hero p{font-size:17px}
 .dashboard{display:grid;grid-template-columns:minmax(270px,.92fr) minmax(380px,1.25fr) minmax(270px,.85fr);gap:18px;align-items:start;margin-top:-43px}
 .dashboard>.panel,.dashboard>.section,.dashboard>.banner,.sidebar{min-width:0}
@@ -46,3 +46,6 @@ body{background:#f4f7fb}.wrap{width:min(1450px,100% - 40px)}
 @media(max-width:390px){.reco-photo{width:83px;height:65px}.age button{font-size:11px;padding:9px 10px}.photo{height:120px}}
 .trust-panel .consult-options{margin-top:22px;padding-top:18px;border-top:1px solid #e8eef5}.consult-options h3{font-size:15px;margin:0 0 12px;color:#173b63}.trust-panel .topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.trust-panel .topic{min-height:82px;padding:13px 7px;font-size:12px;border-radius:13px}.trust-panel .topic .ico{font-size:21px;margin-bottom:6px}.trust-panel .merged-cta{margin-top:15px}@media(max-width:720px){.trust-panel .topic{min-height:90px}}
 .field select{width:100%;padding:15px;border:1px solid #d6e1ed;border-radius:11px;background:#fff;font-size:16px;color:var(--ink);min-width:0}.field select:focus{outline:3px solid #c9e6ff;border-color:var(--blue)}.field .optional{font-weight:500;color:#8fa0af}
+
+/* Vehicle cards, indicative starting prices, and powertrain filters */
+.vehicle-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.vehicle-filter{border:1px solid #d7e3f0;background:#fff;border-radius:999px;padding:10px 14px;font-weight:750;color:#315170;cursor:pointer}.vehicle-filter.active{background:var(--navy);border-color:var(--navy);color:#fff}.car-price{font-size:14px;font-weight:850;color:#145b9d;margin:7px 0}.car-placeholder{flex-direction:column;gap:7px;text-decoration:none;color:#fff;background:linear-gradient(135deg,#1b2b3f,#46556a);text-align:center;padding:15px}.car-placeholder .placeholder-brand{font-size:11px;letter-spacing:3px;color:#c9d5e1}.car-placeholder strong{font-size:24px}.car-placeholder small{font-size:11px;color:#d6e1eb}.car-placeholder::before{display:none!important}.car-card[hidden]{display:none!important}
