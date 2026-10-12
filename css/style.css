@@ -49,3 +49,6 @@ body{background:#f4f7fb}.wrap{width:min(1450px,100% - 40px)}
 
 /* Vehicle cards, indicative starting prices, and powertrain filters */
 .vehicle-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.vehicle-filter{border:1px solid #d7e3f0;background:#fff;border-radius:999px;padding:10px 14px;font-weight:750;color:#315170;cursor:pointer}.vehicle-filter.active{background:var(--navy);border-color:var(--navy);color:#fff}.car-price{font-size:14px;font-weight:850;color:#145b9d;margin:7px 0}.car-placeholder{flex-direction:column;gap:7px;text-decoration:none;color:#fff;background:linear-gradient(135deg,#1b2b3f,#46556a);text-align:center;padding:15px}.car-placeholder .placeholder-brand{font-size:11px;letter-spacing:3px;color:#c9d5e1}.car-placeholder strong{font-size:24px}.car-placeholder small{font-size:11px;color:#d6e1eb}.car-placeholder::before{display:none!important}.car-card[hidden]{display:none!important}
+
+/* Text fallback if a newly captured vehicle image is not yet available. */
+.image-fallback{position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:linear-gradient(135deg,#182b40,#43576e);color:#fff;font-size:22px;font-weight:800;text-align:center;padding:12px}.image-fallback small{font-size:11px;font-weight:500;color:#dce6ef}
